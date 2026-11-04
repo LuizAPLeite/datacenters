@@ -1,9 +1,11 @@
 <?php
 /**
- * Exporta os data centers do MySQL para dados.json.
+ * Exporta os data centers do MySQL para js/dados.js.
  *
- * O dados.json é usado pela versão estática do site (GitHub Pages), que
- * não roda PHP. Rode sempre que alterar o banco:
+ * O js/dados.js é usado pela versão estática do site (GitHub Pages ou
+ * index.html aberto direto do disco), que não roda PHP. É um script
+ * comum (e não um .json buscado com fetch) para funcionar também em
+ * file://, onde o navegador bloqueia fetch. Rode sempre que alterar o banco:
  *
  *   php exportar.php
  */
@@ -45,9 +47,10 @@ foreach ($linhas as &$l) {
 unset($l);
 
 $json = json_encode($linhas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-if ($json === false || file_put_contents(__DIR__ . '/dados.json', $json . PHP_EOL) === false) {
-    fwrite(STDERR, 'Erro ao gravar dados.json.' . PHP_EOL);
+$js = "// Gerado por exportar.php — não edite à mão.\nwindow.DADOS_DATACENTERS = " . $json . ";\n";
+if ($json === false || file_put_contents(__DIR__ . '/js/dados.js', $js) === false) {
+    fwrite(STDERR, 'Erro ao gravar js/dados.js.' . PHP_EOL);
     exit(1);
 }
 
-echo count($linhas) . ' data centers exportados para dados.json' . PHP_EOL;
+echo count($linhas) . ' data centers exportados para js/dados.js' . PHP_EOL;

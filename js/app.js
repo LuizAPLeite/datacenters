@@ -1,6 +1,6 @@
 /**
  * Globo 3D de data centers (Globe.gl).
- * Busca os dados em api.php (ou em dados.json, na versão estática),
+ * Busca os dados em api.php (ou em js/dados.js, na versão estática),
  * desenha um pin com a logo de cada empresa e mostra um balão com o
  * resumo ao clicar.
  */
@@ -125,15 +125,16 @@
   }
 
   // Com PHP (Laragon ou hospedagem com PHP) os dados vêm da API.
-  // Em hospedagem estática (GitHub Pages) o PHP não roda: usa o
-  // dados.json gerado por exportar.php e a página detalhes.html.
+  // Sem PHP (GitHub Pages ou index.html aberto direto do disco) usa o
+  // js/dados.js gerado por exportar.php e a página detalhes.html.
   let paginaDetalhes = 'detalhes.php';
 
   buscarJson('api.php?acao=listar')
     .catch(function (erro) {
-      console.warn('API indisponível, usando dados.json:', erro.message);
+      console.warn('API indisponível, usando js/dados.js:', erro.message);
       paginaDetalhes = 'detalhes.html';
-      return buscarJson('dados.json');
+      if (!Array.isArray(window.DADOS_DATACENTERS)) throw new Error('js/dados.js não encontrado');
+      return window.DADOS_DATACENTERS;
     })
     .then(function (dados) {
       globo.htmlElementsData(dados);

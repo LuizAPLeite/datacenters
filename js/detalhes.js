@@ -1,6 +1,6 @@
 /**
  * Página de detalhes estática (detalhes.html?id=N).
- * Lê dados.json e monta o mesmo conteúdo de detalhes.php.
+ * Lê os dados de js/dados.js e monta o mesmo conteúdo de detalhes.php.
  * Todo texto entra via textContent, sem montar HTML com dados.
  */
 (function () {
@@ -131,18 +131,12 @@
     return;
   }
 
-  fetch('dados.json')
-    .then(function (resp) {
-      if (!resp.ok) throw new Error('Erro ' + resp.status);
-      return resp.json();
-    })
-    .then(function (lista) {
-      const dc = lista.find(function (d) { return d.id === id; });
-      if (dc) renderizar(dc);
-      else mostrarErro('Data center não encontrado.');
-    })
-    .catch(function (erro) {
-      console.error(erro);
-      mostrarErro('Não foi possível carregar os dados.');
-    });
+  const lista = window.DADOS_DATACENTERS;
+  if (!Array.isArray(lista)) {
+    mostrarErro('Não foi possível carregar os dados.');
+    return;
+  }
+  const dc = lista.find(function (d) { return d.id === id; });
+  if (dc) renderizar(dc);
+  else mostrarErro('Data center não encontrado.');
 })();

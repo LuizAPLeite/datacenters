@@ -28,12 +28,12 @@ Globo 3D interativo que mostra onde ficam alguns dos data centers mais important
 
 ## Duas formas de rodar
 
-O projeto funciona com **PHP + MySQL** (desenvolvimento local ou hospedagem com PHP) e também como **site estático** (GitHub Pages). O `js/app.js` tenta usar a API em PHP. Se ela não estiver disponível, passa a ler o arquivo `dados.json` e abre `detalhes.html` em vez de `detalhes.php`.
+O projeto funciona com **PHP + MySQL** (desenvolvimento local ou hospedagem com PHP) e também como **site estático** (GitHub Pages, ou abrindo o `index.html` direto do disco). O `js/app.js` tenta usar a API em PHP. Se ela não estiver disponível, usa os dados de `js/dados.js` e abre `detalhes.html` em vez de `detalhes.php`.
 
 ```
 MySQL ──► api.php / detalhes.php        (com PHP)
   │
-  └─► php exportar.php ──► dados.json ──► detalhes.html   (estático)
+  └─► php exportar.php ──► js/dados.js ──► detalhes.html   (estático)
 ```
 
 ### Localmente, com Laragon (PHP + MySQL)
@@ -49,7 +49,7 @@ MySQL ──► api.php / detalhes.php        (com PHP)
 
 ### Atualizando a versão estática
 
-Depois de alterar o banco, gere o JSON de novo e faça commit:
+Depois de alterar o banco, gere o `js/dados.js` de novo e faça commit:
 
 ```bash
 php exportar.php
@@ -63,10 +63,10 @@ php exportar.php
 ├── detalhes.html       Detalhes (versão estática)
 ├── api.php             API JSON (listar / detalhe)
 ├── config.php          Lê o .env e cria a conexão PDO
-├── exportar.php        Gera dados.json a partir do banco (só pelo terminal)
-├── dados.json          Dados exportados para a versão estática
+├── exportar.php        Gera js/dados.js a partir do banco (só pelo terminal)
 ├── database.sql        Esquema e dados
 ├── css/style.css
+├── js/dados.js         Dados exportados para a versão estática
 ├── js/app.js           Globo, pins e balão
 ├── js/detalhes.js      Monta a página de detalhes estática
 └── img/

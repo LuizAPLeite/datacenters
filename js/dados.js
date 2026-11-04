@@ -1,4 +1,5 @@
-[
+// Gerado por exportar.php — não edite à mão.
+window.DADOS_DATACENTERS = [
     {
         "id": 10,
         "nome": "Apple Viborg",
@@ -444,4 +445,4 @@
         "empresa_cor": "#0EA5E9",
         "empresa_site": "https://www.teraco.co.za/"
     }
-]
+];
