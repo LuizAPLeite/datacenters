@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mapa Mundial de Data Centers</title>
+  <meta name="description" content="Globo 3D interativo com a localização dos principais data centers do mundo.">
+
+  <!-- Prévia do link em WhatsApp e redes sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Mapa Mundial de Data Centers">
+  <meta property="og:description" content="Gire o globo 3D e descubra a história dos data centers de Google, Meta, Microsoft, AWS, Apple e outras empresas.">
+  <meta property="og:url" content="https://luizapleite.github.io/datacenters/">
+  <meta property="og:image" content="https://luizapleite.github.io/datacenters/img/preview.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="420">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body class="pagina-globo">
+
+  <header class="topo">
+    <h1>Mapa Mundial de Data Centers</h1>
+    <p class="topo__sub">Arraste para girar o globo e toque em um pin para ver os detalhes.</p>
+  </header>
+
+  <!-- Container do Globe.gl -->
+  <main id="globo" aria-label="Globo 3D com data centers"></main>
+
+  <!-- Balão de informações (preenchido via JS) -->
+  <aside id="balao" class="balao" role="dialog" aria-live="polite" hidden>
+    <button type="button" class="balao__fechar" aria-label="Fechar">&times;</button>
+    <div class="balao__cabecalho">
+      <img class="balao__logo" src="" alt="">
+      <div>
+        <h2 class="balao__nome"></h2>
+        <p class="balao__empresa"></p>
+      </div>
+    </div>
+    <p class="balao__local"></p>
+    <p class="balao__resumo"></p>
+    <a class="botao balao__detalhes" href="#">Mais detalhes</a>
+  </aside>
+
+  <div id="status" class="status" role="status">Carregando data centers…</div>
+
+  <script src="https://unpkg.com/globe.gl@2.32.0/dist/globe.gl.min.js"></script>
+  <script src="js/app.js?v=4"></script>
+</body>
+</html>

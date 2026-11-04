@@ -1,0 +1,191 @@
+/* =========================================================
+   Mapa Mundial de Data Centers — estilos
+   ========================================================= */
+
+:root {
+  --fundo: #020617;
+  --painel: rgba(15, 23, 42, 0.92);
+  --borda: rgba(148, 163, 184, 0.25);
+  --texto: #e2e8f0;
+  --texto-suave: #94a3b8;
+  --destaque: #38bdf8;
+  --raio: 12px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+a { color: var(--destaque); }
+
+/* ---------- Página do globo ---------- */
+.pagina-globo { overflow: hidden; }
+
+#globo { position: fixed; inset: 0; }
+
+.topo {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 10;
+  pointer-events: none;
+}
+.topo h1 { margin: 0; font-size: clamp(1.2rem, 3vw, 1.8rem); text-shadow: 0 2px 8px #000; }
+.topo__sub { margin: 4px 0 0; color: var(--texto-suave); font-size: 0.9rem; }
+
+/* Pin com a logo da empresa (a ponta da gota fica sobre a coordenada) */
+.pin-wrapper { width: 38px; height: 38px; }
+.pin {
+  width: 38px;
+  height: 38px;
+  padding: 3px;
+  border: 3px solid var(--cor, #3b82f6);
+  border-radius: 50% 50% 50% 0;
+  transform: translateY(-60%) rotate(-45deg);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.pin img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+.pin:hover,
+.pin:focus-visible {
+  transform: translateY(-60%) rotate(-45deg) scale(1.2);
+  outline: none;
+}
+
+/* Balão de informações */
+.balao {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 20;
+  width: min(360px, calc(100vw - 32px));
+  padding: 18px;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: surgir 0.2s ease;
+}
+.balao[hidden] { display: none; }
+@keyframes surgir { from { opacity: 0; transform: translateY(8px); } }
+
+.balao__fechar {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: 0;
+  background: none;
+  color: var(--texto-suave);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.balao__cabecalho { display: flex; gap: 12px; align-items: center; padding-right: 20px; }
+.balao__logo { width: 44px; height: 44px; border-radius: 50%; background: #fff; padding: 3px; object-fit: contain; }
+.balao__nome { margin: 0; font-size: 1.1rem; }
+.balao__empresa,
+.balao__local { margin: 0; color: var(--texto-suave); font-size: 0.9rem; }
+.balao__local { margin-top: 10px; }
+.balao__resumo { margin: 8px 0 14px; font-size: 0.95rem; }
+
+.botao {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--destaque);
+  color: #0f172a;
+  font-weight: 600;
+  text-decoration: none;
+}
+.botao:hover { filter: brightness(1.1); }
+
+.status {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 10;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--painel);
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  transition: opacity 0.6s;
+}
+.status--oculto { opacity: 0; }
+.status--erro { color: #fca5a5; opacity: 1; }
+
+/* ---------- Página de detalhes ---------- */
+.pagina-detalhes { background: linear-gradient(#0f172a, var(--fundo)); min-height: 100vh; }
+
+.voltar { max-width: 900px; margin: 0 auto; padding: 16px; }
+.voltar a { text-decoration: none; }
+
+.detalhes { max-width: 900px; margin: 0 auto; padding: 0 16px 48px; }
+.detalhes h1 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; }
+.detalhes h2 { margin-top: 36px; border-bottom: 1px solid var(--borda); padding-bottom: 6px; }
+
+.detalhes__cabecalho { display: flex; gap: 16px; align-items: center; margin-bottom: 20px; }
+.detalhes__logo { width: 64px; height: 64px; border-radius: 50%; background: #fff; padding: 4px; flex-shrink: 0; object-fit: contain; }
+.detalhes__meta { margin: 4px 0 0; color: var(--texto-suave); }
+
+.detalhes__foto { margin: 0; }
+.detalhes__foto img { width: 100%; border-radius: var(--raio); display: block; }
+figcaption { margin-top: 6px; color: var(--texto-suave); font-size: 0.8rem; }
+
+.detalhes__ficha dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 20px; }
+.detalhes__ficha dt { color: var(--texto-suave); }
+.detalhes__ficha dd { margin: 0; }
+
+.galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.galeria figure { margin: 0; }
+.galeria img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; }
+figcaption small { display: block; opacity: 0.8; }
+
+.aviso { padding: 12px 16px; border-radius: 8px; background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+
+.rodape { text-align: center; padding: 24px; color: var(--texto-suave); font-size: 0.85rem; }
+
+.carregando { color: var(--texto-suave); }
+
+@media (max-width: 600px) {
+  .detalhes__cabecalho { flex-direction: column; align-items: flex-start; }
+
+  /* Globo no celular: cabeçalho com fundo para ficar legível sobre os pins */
+  .topo {
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: max(12px, env(safe-area-inset-top)) 16px 28px;
+    background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0));
+  }
+  .topo__sub { font-size: 0.8rem; }
+
+  /* Balão vira um painel na parte de baixo da tela */
+  .balao {
+    left: 8px;
+    right: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .botao { display: block; text-align: center; padding: 12px 16px; }
+  .balao__fechar { padding: 4px 8px; }
+}

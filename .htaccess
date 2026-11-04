@@ -1,0 +1,5 @@
+# Bloqueia acesso direto a arquivos sensíveis
+<FilesMatch "^\.(env|env\.example|gitignore)$|\.sql$">
+    Require all denied
+</FilesMatch>
+Options -Indexes

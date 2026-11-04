@@ -1,0 +1,15 @@
+# Credenciais e configurações locais
+.env
+
+# Dependências
+/vendor/
+/node_modules/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Pacote gerado para publicação
+publicar.zip
