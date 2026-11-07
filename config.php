@@ -42,6 +42,10 @@ function env(string $chave, string $padrao = ''): string
 
 define('APP_DEBUG', filter_var(env('APP_DEBUG', 'false'), FILTER_VALIDATE_BOOLEAN));
 
+// Números no JSON com a menor forma exata (56.494, e não 56.493999999999999772...).
+// Algumas hospedagens configuram precisão 17, o que deixa as respostas bem maiores.
+ini_set('serialize_precision', '-1');
+
 /** Conexão PDO compartilhada (criada sob demanda). */
 function db(): PDO
 {

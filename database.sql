@@ -32,7 +32,7 @@ CREATE TABLE empresas (
   logo_fonte    VARCHAR(255) NULL,
   cor           CHAR(7)      NOT NULL DEFAULT '#3b82f6' COMMENT 'Cor de destaque do pin',
   criado_em     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data centers
 CREATE TABLE datacenters (
@@ -60,7 +60,7 @@ CREATE TABLE datacenters (
   CONSTRAINT fk_dc_empresa FOREIGN KEY (empresa_id) REFERENCES empresas(id)
     ON UPDATE CASCADE ON DELETE RESTRICT,
   INDEX idx_dc_pais (pais)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Demais data centers do mundo (OpenStreetMap), exibidos como pontos
 CREATE TABLE pontos (
@@ -75,7 +75,7 @@ CREATE TABLE pontos (
   longitude   DECIMAL(9,6)  NOT NULL,
   INDEX idx_pontos_pais (pais),
   INDEX idx_pontos_cidade (cidade)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- -------------------------------------------------------------
 -- Empresas

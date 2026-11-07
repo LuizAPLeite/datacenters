@@ -60,7 +60,7 @@ function credito(?string $autor, ?string $licenca, ?string $fonte): string
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $dc ? e($dc['nome']) . ' — ' : '' ?>Mapa Mundial de Data Centers</title>
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body class="pagina-detalhes">
 

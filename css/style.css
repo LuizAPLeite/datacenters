@@ -418,7 +418,8 @@ figcaption small { display: block; opacity: 0.8; }
   .busca__campo { height: 44px; font-size: 16px; } /* 16px evita zoom automático no iPhone */
   .busca__icone { top: 12px; }
   .busca__limpar { top: 6px; }
-  .filtros { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; justify-self: stretch; padding-bottom: 2px; }
+  .filtros { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; justify-self: stretch; padding-bottom: 2px; scrollbar-width: none; }
+  .filtros::-webkit-scrollbar { display: none; }
   .filtro { white-space: nowrap; padding: 4px 10px; font-size: 0.78rem; }
 
   /* Lista vira um painel na parte de baixo da tela */
