@@ -81,6 +81,12 @@
     if (dc.ano_inauguracao) meta.push('Inaugurado em ' + dc.ano_inauguracao);
     const titulo = el('div');
     titulo.append(el('h1', null, dc.nome), el('p', 'detalhes__meta', meta.join(' · ')));
+    if (dc.ia || dc.situacao === 'construcao') {
+      const etiquetas = el('p', 'balao__etiquetas');
+      if (dc.ia) etiquetas.append(el('span', 'etiqueta etiqueta--ia', 'IA'));
+      if (dc.situacao === 'construcao') etiquetas.append(el('span', 'etiqueta etiqueta--obra', 'Em construção'));
+      titulo.append(etiquetas);
+    }
     cab.append(titulo);
 
     // Foto principal
@@ -109,6 +115,8 @@
     item('Localização', local);
     item('Coordenadas', dc.latitude + ', ' + dc.longitude);
     if (dc.ano_inauguracao) item('Inauguração', String(dc.ano_inauguracao));
+    item('Situação', dc.situacao === 'construcao' ? 'Em construção' : 'Em operação');
+    if (dc.ia) item('Uso principal', 'Inteligência artificial');
     ficha.append(el('h2', null, 'Ficha técnica'), dl);
 
     elMain.replaceChildren(cab, foto, hist, ficha);

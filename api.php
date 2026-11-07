@@ -2,13 +2,14 @@
 /**
  * API JSON do mapa.
  *
- *   api.php?acao=listar          → todos os data centers (dados resumidos para o globo)
+ *   api.php?acao=listar          → data centers em destaque (dados resumidos para o globo)
+ *   api.php?acao=pontos          → demais data centers (OpenStreetMap), formato compacto
  *   api.php?acao=detalhe&id=1    → um data center com dados completos
  */
 
 declare(strict_types=1);
 
-require __DIR__ . '/config.php';
+require __DIR__ . '/consultas.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -26,22 +27,10 @@ $acao = $_GET['acao'] ?? 'listar';
 try {
     switch ($acao) {
         case 'listar':
-            $sql = 'SELECT d.id, d.nome, d.cidade, d.pais, d.latitude, d.longitude, d.resumo,
-                           e.nome AS empresa, e.logo AS empresa_logo, e.cor AS empresa_cor
-                      FROM datacenters d
-                      JOIN empresas e ON e.id = d.empresa_id
-                     WHERE d.ativo = 1
-                     ORDER BY d.nome';
-            $linhas = db()->query($sql)->fetchAll();
+            responder(listarDestaques());
 
-            // Garante tipos numéricos no JSON
-            foreach ($linhas as &$l) {
-                $l['id']        = (int) $l['id'];
-                $l['latitude']  = (float) $l['latitude'];
-                $l['longitude'] = (float) $l['longitude'];
-            }
-            unset($l);
-            responder($linhas);
+        case 'pontos':
+            responder(listarPontos());
 
         case 'detalhe':
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);

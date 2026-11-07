@@ -60,7 +60,7 @@ function credito(?string $autor, ?string $licenca, ?string $fonte): string
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $dc ? e($dc['nome']) . ' — ' : '' ?>Mapa Mundial de Data Centers</title>
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body class="pagina-detalhes">
 
@@ -83,6 +83,12 @@ function credito(?string $autor, ?string $licenca, ?string $fonte): string
             <?= e($dc['empresa']) ?> · <?= e($dc['cidade']) ?>, <?= e($dc['pais']) ?>
             <?php if ($dc['ano_inauguracao']): ?> · Inaugurado em <?= e((string) $dc['ano_inauguracao']) ?><?php endif; ?>
           </p>
+          <?php if ($dc['ia'] || $dc['situacao'] === 'construcao'): ?>
+            <p class="balao__etiquetas">
+              <?php if ($dc['ia']): ?><span class="etiqueta etiqueta--ia">IA</span><?php endif; ?>
+              <?php if ($dc['situacao'] === 'construcao'): ?><span class="etiqueta etiqueta--obra">Em construção</span><?php endif; ?>
+            </p>
+          <?php endif; ?>
         </div>
       </header>
 
@@ -118,6 +124,10 @@ function credito(?string $autor, ?string $licenca, ?string $fonte): string
           <dt>Coordenadas</dt><dd><?= e($dc['latitude']) ?>, <?= e($dc['longitude']) ?></dd>
           <?php if ($dc['ano_inauguracao']): ?>
             <dt>Inauguração</dt><dd><?= e((string) $dc['ano_inauguracao']) ?></dd>
+          <?php endif; ?>
+          <dt>Situação</dt><dd><?= $dc['situacao'] === 'construcao' ? 'Em construção' : 'Em operação' ?></dd>
+          <?php if ($dc['ia']): ?>
+            <dt>Uso principal</dt><dd>Inteligência artificial</dd>
           <?php endif; ?>
         </dl>
       </section>

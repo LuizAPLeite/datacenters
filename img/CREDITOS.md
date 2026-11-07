@@ -1,8 +1,13 @@
-# Créditos das imagens
+# Créditos das imagens e dos dados
 
-Todas as fotos e logos vêm do Wikimedia Commons, exceto onde indicado.
+Fotos e logos vêm do Wikimedia Commons, exceto onde indicado.
 Os mesmos dados ficam nas colunas `*_autor`, `*_licenca` e `*_fonte` do banco (gerados a partir do `database.sql`).
 Logos de empresas são marcas registradas de seus donos; a licença livre cobre o arquivo, não o uso da marca.
+
+## Dados do mapa
+
+- **Pontos ("Todos os data centers")**: © colaboradores do [OpenStreetMap](https://www.openstreetmap.org/copyright), licença [ODbL](https://opendatacommons.org/licenses/odbl/). Extraídos em novembro de 2026 (etiquetas `telecom=data_center` e `building=data_center`).
+- **País e cidade dos pontos**: calculados com mapas do [Natural Earth](https://www.naturalearthdata.com/) (domínio público).
 
 ## Logos
 
@@ -17,6 +22,9 @@ Logos de empresas são marcas registradas de seus donos; a licença livre cobre 
 | logos/teraco.svg | Marcador provisório do projeto (logo oficial sem licença livre) | Uso interno | — |
 | logos/equinix.png | Equinix | Domínio público | [Commons](https://commons.wikimedia.org/wiki/File:Equinix_logo.svg) |
 | logos/nextdc.svg | Marcador provisório do projeto (logo oficial sem licença livre) | Uso interno | — |
+| logos/openai.png | OpenAI | Domínio público | [Commons](https://commons.wikimedia.org/wiki/File:OpenAI_logo_2025_%28symbol%29.svg) |
+| logos/xai.png | X.AI Corp. | Domínio público | [Commons](https://commons.wikimedia.org/wiki/File:XAI-Logo.svg) |
+| ponto.svg | Ícone do projeto | Uso interno | — |
 | datacenters/placeholder.svg | Marcador provisório do projeto | Uso interno | — |
 
 ## Fotos dos data centers
@@ -42,6 +50,13 @@ Logos de empresas são marcas registradas de seus donos; a licença livre cobre 
 | datacenters/tokyo.jpg | Ruthsic | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Tokyo_skyline_seen_from_Tokyo_Skytree.jpg) |
 | datacenters/perth.jpg | Samuel Wiki | CC0 | [Commons](https://commons.wikimedia.org/wiki/File:NEXTDC_P2%2C_Perth.jpg) |
 | datacenters/sydney.jpg | Dietmar Rabich | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Sydney_%28AU%29%2C_Skyline_--_2019_--_2287.jpg) |
+| datacenters/abilene.jpg | Michael Barera | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Abilene_June_2019_70_%28skyline%29.jpg) |
+| datacenters/memphis.jpg | Leonard23 (Wikipédia em inglês) | Domínio público | [Commons](https://commons.wikimedia.org/wiki/File:Memphis_skyline_from_the_air.jpg) |
+| datacenters/mount-pleasant.jpg | Alinghi3 | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Mount_Pleasant_WI_Aerial_Image_2009.jpg) |
+| datacenters/new-carlisle.jpg | Publichall | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:New_Carlisle%2C_Indiana.jpg) |
+| datacenters/new-albany.jpg | Sixflashphoto | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:New_Albany_City_Hall_1.jpg) |
+| datacenters/richland.jpg | Billy Hathorn | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Richland_Parish_Courthouse%2C_Rayville%2C_LA_IMG_0153.JPG) |
+| datacenters/abu-dhabi.jpg | comedian44 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Abu_Dhabi_Skyline.jpg) |
 | datacenters/dalles-2.jpg | Tony Webster | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Google_Datacenter_-_The_Dalles%2C_Oregon_%2817832143871%29.jpg) |
 | datacenters/prineville-2.jpg | Intel Free Press | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Outside_Facebook_Data_Center.jpg) |
 | datacenters/prineville-3.jpg | Intel Free Press | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Custom_Designed_Server_Boards.jpg) |
