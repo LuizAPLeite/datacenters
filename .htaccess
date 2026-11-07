@@ -3,3 +3,22 @@
     Require all denied
 </FilesMatch>
 Options -Indexes
+
+# Páginas sempre conferidas com o servidor (evita versão antiga presa no cache
+# após atualizações). CSS e JS usam ?v= no link e continuam em cache.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|php)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
+# Redireciona HTTP para HTTPS na hospedagem.
+# O InfinityFree fica atrás de um proxy, por isso também confere o X-Forwarded-Proto.
+# Endereços locais (*.test e localhost, no Laragon) ficam de fora.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} !(\.test|^localhost|^127\.0\.0\.1)(:\d+)?$ [NC]
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
